@@ -17,7 +17,7 @@ const sliderTheme = "h-2 w-full cursor-pointer appearance-none rounded-full bg-w
 export default function Page() {
   const [viewMode, setViewMode] = useState<ViewMode>("video");
   const [isLiveSyncEnabled, setIsLiveSyncEnabled] = useState(true);
-  const autoRunTimeoutRef = useRef<ReturnType<typeof window.setTimeout> | null>(null);
+  const autoRunTimeoutRef = useRef<any>(null);
   const previousWorldSettingsRef = useRef<string | null>(null);
   const pendingAutoRunRef = useRef(false);
 
