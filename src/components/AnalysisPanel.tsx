@@ -43,13 +43,17 @@ export function AnalysisPanel() {
       return null;
     }
 
-    const totalDistance = Array.from({ length: sampleCount }).reduce((sum: number, _, index) => {
-      const original = originalPath[index];
-      const simulated = simulatedPath[index];
-      return sum + Math.hypot(simulated.x - original.x, simulated.y - original.y);
-    }, 0);
+    const totalDistance = (Array.from({ length: sampleCount }).reduce(
+      (sum: number, _, index) => {
+        const original = originalPath[index];
+        const simulated = simulatedPath[index];
+        if (!original || !simulated) return sum;
+        return sum + Math.hypot(simulated.x - original.x, simulated.y - original.y);
+      },
+      0,
+    ) as number);
 
-    return totalDistance / sampleCount;
+    return totalDistance / (sampleCount || 1);
   }, [originalPath, simulatedPath]);
 
   const energySeries = useMemo<EnergyDatum[]>(() => {
