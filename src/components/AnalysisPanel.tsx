@@ -43,7 +43,7 @@ export function AnalysisPanel() {
       return null;
     }
 
-    const totalDistance = Array.from({ length: sampleCount }).reduce((sum, _, index) => {
+    const totalDistance = Array.from({ length: sampleCount }).reduce((sum: number, _, index) => {
       const original = originalPath[index];
       const simulated = simulatedPath[index];
       return sum + Math.hypot(simulated.x - original.x, simulated.y - original.y);
